@@ -70,6 +70,27 @@ public:
         return *(str_->ptr_);
     }
 
+    T* operator->() const
+    {
+        if (str_)
+            return str_->ptr_;
+        return nullptr;
+    }
+
+    long use_count() const
+    {
+        if (str_)
+            return str_->cnt_ + 1;
+        return 0;
+    }
+
+    T* get() const
+    {
+        if (str_)
+            return str_->ptr_;
+        return nullptr;
+    }
+
 private:
     class shared_storage
     {
